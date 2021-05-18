@@ -2,36 +2,18 @@
 using namespace std;
 
 int main(){
-  int n;
-  cin >> n;
-  vector<int> a(n);
-  vector<int> b(n);
+  long long N;
+  int K;
+  cin >> N >> K;
 
-  for(int i=0; i<n; i++){
-    cin >> a.at(i) >> b.at(i);
-  }
-  int min = 100000;
-  for(int i=0; i<n; i++){
-    for(int j=0; j<n; j++){
-      if(i==j) continue;
-      if(a.at(i) < min && b.at(j) < min){
-        if(a.at(i) < b.at(j)){
-          min = b.at(j);
-        }
-        else{
-          min = a.at(i);
-        }
-      }
+  for(int i=0; i<K; i++){
+    if(N % 200 == 0){
+      N = N/200;
+    }else{
+      string str = to_string(N);
+      str += "200";
+      N = stoull(str);
     }
   }
-  int minn = 100000;
-  for(int i=0; i<n; i++){
-    if(a.at(i)+b.at(i)<minn){
-      minn = a.at(i)+b.at(i);
-    }
-  }
-  if(minn < min){
-    min = minn;
-  }
-  cout << min << endl;
+  cout << N << endl;
 }

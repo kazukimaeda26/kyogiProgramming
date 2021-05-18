@@ -1,0 +1,4 @@
+to_string(XXX)
+  文字列型への変換
+stoull
+  文字列strを数値として読み取り、unsigned long long 型に変換する
