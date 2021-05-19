@@ -2,21 +2,22 @@
 using namespace std;
 
 int main(){
-  int N;
-  cin >> N;
-  vector<int> vec(N);
+  int n;
+  cin >> n;
+  vector<int> a(n);
 
-  for(int i=0; i<N; i++){
-    cin >> vec.at(i);
+  for(int i=0; i<n; i++){
+    cin >> a[i];
   }
-  int count = 0;
 
-  for(int i=0; i<N; i++){
-    for(int j=i+1; j<N; j++ ){
-      if((vec.at(i)-vec.at(j)) % 200 == 0){
-        count += 1;
-      }
-    }
+  vector<int> cnt(200);
+  for(int i=0; i<n; i++){
+    // i番目の数をmod200し、vectorの中に個数を記録している。
+    cnt[a[i]%200]++;
   }
-  cout << count << endl;
+  long long ans = 0;
+  //キャストする必要がある。(int から long longに変換する)
+  for(int i=0; i<200; i++) ans += (long long)cnt[i]*(cnt[i]-1)/2;
+  cout << ans << endl;
+  return 0;
 }

@@ -1,20 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+const int MaxA = 200;
+
 int main(){
   int n;
   cin >> n;
-  vector<long long> vec(n);
-
+  vector<int> a(n);
   for(int i=0; i<n; i++){
-    cin >> vec.at(i);
+    cin >> a[i];
   }
-
-  long long sum = 0;
-  for(int i=2; i<=n; i++){
-    for(int j=1; j<i; j++){
-      sum += pow(vec.at(i-1)-vec.at(j-1),2);
+  // 401個入るvectorを準備
+  vector<int> d(MaxA*2+1);
+  // 200げたを履かせた数字のカウントを行っている。
+  for(int i=0; i<n; i++) d[MaxA+a[i]]++;
+  long long ans = 0;
+  // aiは-200〜200を動く。
+  for(int ai = -MaxA; ai <= MaxA; ai++){
+    // ajは-200からaiまで動く
+    for(int aj = -MaxA; aj < ai; aj++){
+      long long x = ai - aj;
+      ans += x*x*d[MaxA+ai]*d[MaxA+aj];
     }
   }
-  cout << sum << endl;
+  cout << ans << endl;
+  return 0;
 }
